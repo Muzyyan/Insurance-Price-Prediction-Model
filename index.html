@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insurance Charge Predictor</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="eyebrow">Linear Regression Model</p>
+      <h1>Insurance Charge Predictor</h1>
+      <p class="subtitle">Estimate annual medical insurance charges from a few personal details.</p>
+    </header>
+
+    <main class="layout">
+      <section class="card form-card">
+        <form id="predict-form" novalidate>
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="0" max="120" value="30" required />
+          </div>
+
+          <div class="field">
+            <label>Sex</label>
+            <div class="segmented" data-name="sex">
+              <button type="button" class="seg-btn active" data-value="female">Female</button>
+              <button type="button" class="seg-btn" data-value="male">Male</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="bmi">BMI <span id="bmi-hint" class="hint"></span></label>
+            <input type="number" id="bmi" name="bmi" min="1" max="80" step="0.1" value="27.5" required />
+          </div>
+
+          <div class="field">
+            <label for="children">Children</label>
+            <input type="number" id="children" name="children" min="0" max="20" value="0" required />
+          </div>
+
+          <div class="field">
+            <label>Smoker</label>
+            <div class="segmented" data-name="smoker">
+              <button type="button" class="seg-btn" data-value="yes">Yes</button>
+              <button type="button" class="seg-btn active" data-value="no">No</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="region">Region</label>
+            <select id="region" name="region" required>
+              <option value="northeast">Northeast</option>
+              <option value="northwest">Northwest</option>
+              <option value="southeast">Southeast</option>
+              <option value="southwest" selected>Southwest</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <span class="btn-label">Predict Charge</span>
+            <span class="btn-spinner" hidden></span>
+          </button>
+
+          <p id="error-msg" class="error-msg" hidden></p>
+        </form>
+      </section>
+
+      <section class="card result-card">
+        <div id="result-empty" class="result-empty">
+          <div class="result-icon">💵</div>
+          <p>Your estimated annual charge will appear here.</p>
+        </div>
+
+        <div id="result-content" class="result-content" hidden>
+          <p class="result-label">Estimated Annual Charge</p>
+          <p class="result-amount" id="result-amount">$0</p>
+          <div class="result-tags">
+            <span class="tag" id="tag-bmi">BMI category</span>
+          </div>
+          <dl class="result-breakdown" id="result-breakdown"></dl>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Model: Linear Regression &middot; Trained on the classic <code>insurance.csv</code> dataset</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
